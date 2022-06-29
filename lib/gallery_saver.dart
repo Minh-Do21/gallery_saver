@@ -92,7 +92,7 @@ class GallerySaver {
     var newPath = file.path.substring(0, lastSeparator + 1) + (file.path.split('/').last).split('.').first+".jpg";
 
     print('File path:${newPath}');
-    File fileRemane = await File(file.path).copy(newPath);
+    File fileRemane = File(file.path).renameSync(newPath);
 
     await fileRemane.writeAsBytes(bytes);
     print('File name:${fileRemane.path}');
