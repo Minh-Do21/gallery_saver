@@ -89,16 +89,20 @@ class GallerySaver {
 
     File file = new File('$dir/${basename(url)}');
 
-    var lastSeparator = file.path.lastIndexOf(Platform.pathSeparator);
-    var newPath = file.path.substring(0, lastSeparator + 1) + (file.path.split('/').last);
-    print('File newPath:${newPath}');
-    File fileRemane = await File(file.path);
+    
+    
 
     await file.writeAsBytes(bytes);
     print('File name:${file.path}');
-    print('File name fileRemane:${fileRemane.path}');
+    
     print('File size:${await file.length()}');
     print(file.path);
+
+    var lastSeparator = file.path.lastIndexOf(Platform.pathSeparator);
+    var newPath = file.path.substring(0, lastSeparator + 1) + (file.path.split('/').last).split("?").first;
+    print('File newPath:${newPath}');
+    File fileRemane = await File(file.path).copy(newPath);
+    print('File name fileRemane:${fileRemane.path}');
     return file;
   }
 }
