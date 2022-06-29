@@ -103,6 +103,6 @@ class GallerySaver {
     print('File newPath:${newPath}');
     File fileRemane = await File(file.path).copy(newPath);
     print('File name fileRemane:${fileRemane.path}');
-    return file;
+    return fileRemane;
   }
 }
