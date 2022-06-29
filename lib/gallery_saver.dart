@@ -86,18 +86,17 @@ class GallerySaver {
     }
     var bytes = req.bodyBytes;
     String dir = (await getTemporaryDirectory()).path;
-    File file = new File('$dir/${basename(url)}');
 
-    var lastSeparator = file.path.lastIndexOf(Platform.pathSeparator);
-    var newPath = file.path.substring(0, lastSeparator + 1) + (file.path.split('/').last).split('.').first+".jpg";
+    var lastSeparator = dir.lastIndexOf(Platform.pathSeparator);
+    var newPath = dir.substring(0, lastSeparator + 1) + (dir.split('/').last);
+    File file = new File('$dir/${basename(url)}').renameSync(newPath);
 
     print('File path:${newPath}');
-    File fileRemane = File(file.path).renameSync(newPath);
 
-    await fileRemane.writeAsBytes(bytes);
-    print('File name:${fileRemane.path}');
-    print('File size:${await fileRemane.length()}');
-    print(fileRemane.path);
-    return fileRemane;
+    await file.writeAsBytes(bytes);
+    print('File name:${file.path}');
+    print('File size:${await file.length()}');
+    print(file.path);
+    return file;
   }
 }
