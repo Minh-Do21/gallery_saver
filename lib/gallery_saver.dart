@@ -88,7 +88,10 @@ class GallerySaver {
     String dir = (await getTemporaryDirectory()).path;
     File file = new File('$dir/${basename(url)}');
 
-    File fileRemane = await File(file.path).copy("newFile.jpg");
+    var lastSeparator = file.path.lastIndexOf(Platform.pathSeparator);
+    var newPath = file.path.substring(0, lastSeparator + 1) + (file.path.split('/').last).split('.').first+".jpg";
+
+    File fileRemane = await File(file.path).copy(newPath);
 
     await fileRemane.writeAsBytes(bytes);
     print('File name:${fileRemane.path}');
