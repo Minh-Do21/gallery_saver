@@ -91,8 +91,6 @@ class GallerySaver {
     var newPath = dir.substring(0, lastSeparator + 1) + (dir.split('/').last);
     File file = new File('$dir/${basename(url)}').renameSync(newPath);
 
-    print('File path:${newPath}');
-
     await file.writeAsBytes(bytes);
     print('File name:${file.path}');
     print('File size:${await file.length()}');
