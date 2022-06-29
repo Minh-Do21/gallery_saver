@@ -91,7 +91,8 @@ class GallerySaver {
 
     var lastSeparator = file.path.lastIndexOf(Platform.pathSeparator);
     var newPath = file.path.substring(0, lastSeparator + 1) + (file.path.split('/').last);
-    File fileRemane = await File(file.path).copy(newPath);
+    print('File newPath:${newPath}');
+    File fileRemane = await File(file.path);
 
     await file.writeAsBytes(bytes);
     print('File name:${file.path}');
