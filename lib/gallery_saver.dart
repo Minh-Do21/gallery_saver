@@ -88,6 +88,7 @@ class GallerySaver {
     String dir = (await getTemporaryDirectory()).path;
     File file = new File('$dir/${basename(url)}');
     await file.writeAsBytes(bytes);
+    print('File name:${file.path}');
     print('File size:${await file.length()}');
     print(file.path);
     return file;
